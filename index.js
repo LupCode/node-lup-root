@@ -24,7 +24,7 @@ try {
             path = path.substring(0, end);
         }
 
-        if(path === __filename) continue;
+        if(path === _MAIN) continue;
 
         _MAIN = path;
         end = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\\"));
