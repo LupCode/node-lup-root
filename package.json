@@ -1,0 +1,26 @@
+{
+  "name": "lup-root",
+  "version": "1.0.0",
+  "description": "Determines path to project root",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LupCode/node-lup-root.git"
+  },
+  "keywords": [
+    "node",
+    "module",
+    "root",
+    "app-root",
+    "project-root"
+  ],
+  "author": "LupCode.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LupCode/node-lup-root/issues"
+  },
+  "homepage": "https://github.com/LupCode/node-lup-root#readme"
+}
