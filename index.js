@@ -1,10 +1,5 @@
-
-/** Absolute path to the main file  */
-let MAIN = __filename;
-
-/** Absolte path to root directory in which main file is located (always ends with '/' or '\') */
-let ROOT = __dirname;
-
+let _MAIN = __filename;
+let _ROOT = __dirname;
 
 let limit = Error.stackTraceLimit;
 Error.stackTraceLimit = Infinity;
@@ -31,13 +26,19 @@ try {
 
         if(path === __filename) continue;
 
-        MAIN = path;
+        _MAIN = path;
         end = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\\"));
-        ROOT = end > 0 ? path.substring(0, end+1) : path;
+        _ROOT = end > 0 ? path.substring(0, end+1) : path;
         break;
     }
 }
 Error.stackTraceLimit = limit;
+
+/** Absolute path to the main file  */
+const MAIN = _MAIN;
+
+/** Absolte path to root directory in which main file is located (always ends with '/' or '\\') */
+const ROOT = _ROOT;
 
 module.exports = {
     MAIN,
