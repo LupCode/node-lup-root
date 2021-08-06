@@ -1,6 +1,6 @@
 {
   "name": "lup-root",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Determines absolute path to project root and main file",
   "main": "index.js",
   "scripts": {
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/LupCode/node-lup-root/issues"
   },
-  "homepage": "https://github.com/LupCode/node-lup-root#readme"
+  "homepage": "https://github.com/LupCode/node-lup-root#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
