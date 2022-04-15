@@ -1,6 +1,6 @@
 {
   "name": "lup-root",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Determines absolute path to project root and main file",
   "main": "index.js",
   "scripts": {

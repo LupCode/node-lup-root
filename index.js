@@ -15,7 +15,7 @@ try {
         let end = line.indexOf(")", start);
         if(!end) continue;
         let path = line.substring(start, end).trim();
-        if(path.length == 0 || path.startsWith("internal/modules/")) continue;
+        if(path.length == 0 || path.startsWith("internal/modules/") || path.startsWith("node:")) continue;
 
         // remove line and column numbers at end
         for(let j=0; j < 2; j++){
