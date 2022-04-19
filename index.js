@@ -14,15 +14,20 @@ try {
         start++;
         let end = line.indexOf(")", start);
         if(!end) continue;
-        let path = line.substring(start, end).trim();
-        if(path.length == 0 || path.startsWith("internal/modules/") || path.startsWith("node:")) continue;
+        let path = line.substring(start, end).trim().replaceAll("\\", "/");
+        end = Math.max(path.lastIndexOf("/node_modules/next/dist/"), path.lastIndexOf("/node_modules/lup-auth/"));
+        let notTrimmed = end<0;
+        path = notTrimmed ? path : path.substring(0, end+1);
+        if(path.length == 0 || path.startsWith("internal/modules/") || path.startsWith("node:") || 
+            path.lastIndexOf("/.next/server/")>=0) continue;
 
         // remove line and column numbers at end
-        for(let j=0; j < 2; j++){
-            end = path.lastIndexOf(":");
-            if(end < 0) break;
-            path = path.substring(0, end);
-        }
+        if(notTrimmed)
+            for(let j=0; j < 2; j++){
+                end = path.lastIndexOf(":");
+                if(end < 0) break;
+                path = path.substring(0, end);
+            }
 
         if(path === _MAIN) continue;
 
