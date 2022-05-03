@@ -1,7 +1,8 @@
 {
   "name": "lup-root",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Determines absolute path to project root and main file",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
