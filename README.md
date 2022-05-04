@@ -1,3 +1,4 @@
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/LupCode/node-lup-root/On%20Push)
 # lup-root
 Node module that determines absolute path to project root and main file of project  
 
