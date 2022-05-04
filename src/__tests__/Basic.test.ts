@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { ROOT, MAIN } from '../index';
 
 test('ROOT not null', () => {
@@ -10,4 +11,13 @@ test('MAIN not null', () => {
 
 test('MAIN inside ROOT', () => {
   expect(MAIN.startsWith(ROOT)).toBeTruthy();
+});
+
+test('MAIN and ROOT not equal', () => {
+  expect(MAIN.length).toBeGreaterThan(ROOT.length);
+});
+
+test('Is ROOT correct location', () => {
+  const actualRoot = __dirname.substring(0, __dirname.length-"src/__tests__".length).replace(/\\/g, "/");
+  expect(ROOT).toBe(actualRoot);
 });
