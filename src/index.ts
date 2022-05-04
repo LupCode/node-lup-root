@@ -1,7 +1,7 @@
 let _MAIN = __filename.replace(/\\/g, '/'); // '\' -> '/'
 let _ROOT = __dirname.replace(/\\/g, '/'); // '\' -> '/'
 
-const COMMON_BUILD_DIRECTORIES = ['/bin', '/.bin', '/build', '/target'];
+const COMMON_BUILD_DIRECTORIES = ['/bin', '/.bin', '/build', '/out', '/target'];
 
 const originalStackTraceLimit = Error.stackTraceLimit;
 Error.stackTraceLimit = Infinity;
