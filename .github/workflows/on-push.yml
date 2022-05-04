@@ -24,6 +24,8 @@ jobs:
     needs: build
     runs-on: Linux
     steps:
+      - name: Installing tslint and jest
+        run: npm install -g tslint jest
       - name: Running linter
         run: npm run lint
       - name: Running tests
