@@ -24,8 +24,13 @@ jobs:
     needs: build
     runs-on: Linux
     steps:
-      - name: Installing tslint and jest
-        run: npm install -g tslint jest
+      - name: "Setup Node"
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+      - name: Installing 
+        run: npm install -save --save-dev
       - name: Running linter
         run: npm run lint
       - name: Running tests
