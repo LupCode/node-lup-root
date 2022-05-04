@@ -34,7 +34,7 @@ try {
 
     _MAIN = path;
     end = path.lastIndexOf("/node_modules/");
-    end = end < 0 ? end.lastIndexOf("/") : end;
+    end = end < 0 ? path.lastIndexOf("/") : end;
     _ROOT = end > 0 ? path.substring(0, end + 1) : path;
     break;
   }
