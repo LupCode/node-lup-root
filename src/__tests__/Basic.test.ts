@@ -18,6 +18,6 @@ test('MAIN and ROOT not equal', () => {
 });
 
 test('Is ROOT correct location', () => {
-  const actualRoot = __dirname.substring(0, __dirname.length-"src/__tests__".length).replace(/\\/g, "/");
+  let actualRoot = __dirname.substring(0, __dirname.length - 'src/__tests__'.length - 1).replace(/\\/g, '/');
   expect(ROOT).toBe(actualRoot);
 });
