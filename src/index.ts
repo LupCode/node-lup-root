@@ -42,8 +42,7 @@ try {
       let path = line.substring(start, end).trim().replace(/\\/g, '/'); // '\' -> '/'
       start = end + 1;
       if (
-        path.length === 0 ||
-        path === 'rsc' ||
+        path.lastIndexOf('.') < 0 ||
         path.startsWith('internal/modules/') ||
         path.startsWith('node:') ||
         path.startsWith('webpack-internal:') ||
