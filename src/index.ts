@@ -1,7 +1,7 @@
 let _MAIN = __filename.replace(/\\/g, '/'); // '\' -> '/'
 let _ROOT = __dirname.replace(/\\/g, '/'); // '\' -> '/'
 
-const COMMON_BUILD_DIRECTORIES = ['/bin', '/.bin', '/build', '/out', '/target'];
+const COMMON_BUILD_DIRECTORIES = ['/bin', '/.bin', '/build', '/dist', '/lib', '/out', '/target'];
 
 const originalStackTraceLimit = Error.stackTraceLimit;
 Error.stackTraceLimit = Infinity;
@@ -9,35 +9,38 @@ try {
   throw new Error();
 } catch (ex: any) {
   const lines = ex.stack.toString().split('\n');
+  let found = false;
 
-  for (let i = lines.length - 1; i >= 0; i--) {
+  for (let i = lines.length - 1; i >= 0 && !found; i--) {
     const line = lines[i].trim();
     let start = 0;
-    let found = false;
-
     do {
       start = line.indexOf('(', start);
       if (start < 0) break;
       start++;
       let end = start;
 
-      // find closing bracket 
+      // find closing bracket
       let countOpening = 1;
       do {
         const idx1 = line.indexOf('(', end);
         const idx2 = line.indexOf(')', end);
-        if(idx1 < 0 && idx2 < 0){ countOpening = -1; break; }
+        if (idx1 < 0 && idx2 < 0) {
+          countOpening = -1;
+          break;
+        }
 
-        if(idx1 >= 0 && idx1 < idx2){
+        if (idx1 >= 0 && idx1 < idx2) {
           // another opening bracket found
           countOpening++;
           end = idx1 + 1;
-        } else { // closing bracket found
+        } else {
+          // closing bracket found
           countOpening--;
           end = idx2 + (countOpening === 0 ? 0 : 1);
         }
-      } while(countOpening > 0);
-      if(countOpening < 0) break;
+      } while (countOpening > 0);
+      if (countOpening < 0) break;
 
       let path = line.substring(start, end).trim().replace(/\\/g, '/'); // '\' -> '/'
       start = end + 1;
@@ -47,7 +50,7 @@ try {
         path.startsWith('node:') ||
         path.startsWith('webpack-internal:') ||
         path.lastIndexOf('/webpack-runtime.') >= 0 ||
-        path.lastIndexOf('/next/dist') >= 0 || 
+        path.lastIndexOf('/next/dist') >= 0 ||
         path.startsWith('index ')
       )
         continue;
@@ -59,7 +62,17 @@ try {
         path = path.substring(0, end);
       }
 
-      if (path === _MAIN && path.lastIndexOf('/.next/server') < 0) break;
+      // if (path === _MAIN && path.lastIndexOf('/.next/server') < 0) break;
+
+      // next middleware (special case)
+      end = path.lastIndexOf('/.next/dev/server/');
+      if (end >= 0) {
+        const fileName = _MAIN.substring(_ROOT.length + 1);
+        _ROOT = path.substring(0, end);
+        _MAIN = _ROOT + (!_ROOT.endsWith('/') ? '/' : '') + fileName.substring(fileName.startsWith('/') ? 1 : 0);
+        found = true;
+        break;
+      }
 
       _MAIN = path;
       end = path.lastIndexOf('/node_modules/');
@@ -77,9 +90,7 @@ try {
       }
 
       found = true;
-    } while(!found);
-
-    if(found) break;
+    } while (!found);
   }
 }
 Error.stackTraceLimit = originalStackTraceLimit;

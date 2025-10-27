@@ -1,6 +1,6 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/LupCode/node-lup-root)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/lup-root)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/LupCode/node-lup-root/On%20Push)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/LupCode/node-lup-root/on-push.yml?branch=main)
 ![NPM](https://img.shields.io/npm/l/lup-root)
 
 # lup-root
