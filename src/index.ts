@@ -110,19 +110,19 @@ if(originalStackTraceLimit !== undefined) Error.stackTraceLimit = originalStackT
 
 
 /** Absolute path to the root directory of the application (never ends with '/' or '\\'). */
-export const APPLICATION_ROOT = _APPLICATION_ROOT;
+export const APPLICATION_ROOT = _APPLICATION_ROOT || _SCRIPT_ROOT;
 
 /** Absolute path to the main file of the script that got invoked. */
 export const MAIN = _SCRIPT_MAIN;
 
 /** Absolute path to the root directory of the application (never ends with '/' or '\\'). */
-export const ROOT = _APPLICATION_ROOT;
+export const ROOT = _APPLICATION_ROOT || _SCRIPT_ROOT;
 
 /** Absolute path to the main file of the script that got invoked. */
 export const SCRIPT_MAIN = _SCRIPT_MAIN;
 
 /** Absolute path to the root directory of the script that got invoked (never ends with '/' or '\\'). */
-export const SCRIPT_ROOT = _SCRIPT_ROOT;
+export const SCRIPT_ROOT = _SCRIPT_ROOT || _APPLICATION_ROOT;
 
 const lupRoot = {
 
