@@ -1,6 +1,17 @@
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 const _APPLICATION_ROOT = (process.cwd() || import.meta.dirname || '').replaceAll('\\', '/'); // '\' -> '/'
-let _SCRIPT_ROOT = (import.meta.dirname || '').replaceAll('\\', '/'); // '\' -> '/'
-let _SCRIPT_MAIN = (import.meta.filename || '').replaceAll('\\', '/'); // '\' -> '/'
+let _SCRIPT_MAIN = (
+  import.meta.filename || 
+  fileURLToPath(import.meta.url) || 
+  ''
+).replaceAll('\\', '/'); // '\' -> '/'
+let _SCRIPT_ROOT = (
+  import.meta.dirname ||
+  dirname(fileURLToPath(import.meta.url)) ||
+  ''
+).replaceAll('\\', '/'); // '\' -> '/'
 
 const COMMON_BUILD_DIRECTORIES = ['/bin', '/.bin', '/build', '/dist', '/lib', '/out', '/target'];
 

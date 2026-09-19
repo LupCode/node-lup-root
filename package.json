@@ -1,6 +1,6 @@
 {
   "name": "lup-root",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "type": "module",
   "description": "Determines absolute path to project root and main file",
   "files": [
