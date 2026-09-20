@@ -1,30 +1,32 @@
 /// <reference types="jest" />
 /// <reference types="node" />
 
-import { ROOT, MAIN } from '../index.js';
+import lupRoot from '../index.js';
 
 describe('Basic tests', () => {
 
-  test('ROOT not null', () => {
-    expect(ROOT).not.toBeNull();
+  const { APPLICATION_ROOT, SCRIPT_MAIN, SCRIPT_ROOT } = lupRoot;
+
+  test('APPLICATION_ROOT not null', () => {
+    expect(APPLICATION_ROOT).not.toBeNull();
   });
 
-  test('MAIN not null', () => {
-    expect(MAIN).not.toBeNull();
+  test('SCRIPT_ROOT not null', () => {
+    expect(SCRIPT_ROOT).not.toBeNull();
   });
 
-  test('MAIN inside ROOT', () => {
-    expect(MAIN.startsWith(ROOT)).toBeTruthy();
+  test('SCRIPT_MAIN not null', () => {
+    expect(SCRIPT_MAIN).not.toBeNull();
   });
 
-  test('MAIN and ROOT not equal', () => {
-    expect(MAIN.length).toBeGreaterThan(ROOT.length);
+  test('SCRIPT_MAIN inside SCRIPT_ROOT', () => {
+    expect(SCRIPT_MAIN.startsWith(SCRIPT_ROOT)).toBeTruthy();
+    expect(SCRIPT_MAIN.length).toBeGreaterThan(SCRIPT_ROOT.length);
   });
 
-  test('Is ROOT correct location', () => {
-    //const actualRoot = __dirname.substring(0, __dirname.length - 'src/__tests__'.length - 1).replace(/\\/g, '/');
+  test('Is APPLICATION_ROOT correct location', () => {
     const actualRoot = process.cwd().replaceAll('\\', '/');
-    expect(ROOT).toBe(actualRoot);
+    expect(APPLICATION_ROOT).toBe(actualRoot);
   });
 
 });

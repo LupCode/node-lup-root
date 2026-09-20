@@ -8,20 +8,15 @@ Node module that determines absolute path to project root and main file of proje
 
 ## Example
 ```javascript
-import { APPLICATION_ROOT, MAIN, ROOT, SCRIPT_MAIN, SCRIPT_ROOT } from "lup-root";
+import { getApplicationRoot, getProjectRoot, getScriptMain } from "lup-root";
 
-// Absolute path to the main file of the application (not the script that is currently running).
-console.log('Main file: ' + MAIN);,
+// Absolute path to the main file that started the application.
+console.log('Main file: ' + getScriptMain());,
 
-// Absolute path to the root directory of the application (never ends with '/' or '\\').
-console.log("Root directory: " + ROOT);
+// Absolute path to the root of the application directory (actual root of the app inside a monorepo).
+console.log("Application root: " + getApplicationRoot());
 
-// Absolute path to the root directory of the application (never ends with '/' or '\\').
-console.log("Application root: " + APPLICATION_ROOT);
+// Absolute path to the root directory of the project (monorepo root if the application is inside a monorepo).
+console.log("Project root: " + getProjectRoot());
 
-// Absolute path to the main file of the script that is currently running and that got initially invoked.
-console.log("Script main: " + SCRIPT_MAIN);
-
-// Absolute path to the root directory of the script that is currently running and that got initially invoked (never ends with '/' or '\\').
-console.log("Script root: " + SCRIPT_ROOT);
 ```
