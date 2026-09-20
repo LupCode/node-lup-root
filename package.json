@@ -1,6 +1,6 @@
 {
   "name": "lup-root",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "type": "module",
   "description": "Determines absolute path to project root and main file",
   "files": [
@@ -19,7 +19,7 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-    "prepublishOnly": "npm test && npm run lint",
+    "prepublishOnly": "npm run build && npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
