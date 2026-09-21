@@ -139,7 +139,7 @@ function _extractFromStackTrace(): { SCRIPT_MAIN: string; SCRIPT_ROOT: string } 
 
       const candidatePaths = _cleanUpStackTraceLine(line);
       for(let c = 0; c < candidatePaths.length && !found; c++){
-        const candidatePath = candidatePaths[c];
+        const candidatePath = candidatePaths[c]!;
 
         if(
           candidatePath.lastIndexOf('.') < 0 ||
